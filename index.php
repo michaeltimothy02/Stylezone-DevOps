@@ -481,6 +481,8 @@ $result = mysqli_query($conn, $query);
                     <ul class="list-unstyled">
                         <li><a href="#">MEN</a></li>
                         <li><a href="#">WOMEN</a></li>
+                        <li><a href="#">KIDS</a></li>
+                        <li><a href="#">ACCESSORIES</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-3">
