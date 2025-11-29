@@ -46,7 +46,7 @@ $result = mysqli_query($conn, $query);
                     <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="#shop">SHOP</a></li>
                     <li class="nav-item"><a class="nav-link" href="#new_arrival">NEW ARRIVAL</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT US</a></li>
                 </ul>
 
                 <!-- RIGHT ICONS -->
