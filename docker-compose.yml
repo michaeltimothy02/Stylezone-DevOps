@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/myphpapp80
+    depends_on:
+      - php
+    networks:
+      - app-network
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    working_dir: /var/www/myphpapp
+    volumes:
+      - .:/var/www/myphpapp
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_NAME: stylezone_db
+      DB_USER: root # ini gapapa
+      DB_PASSWORD: password
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: stylezone_db
+      # JANGAN pakai MYSQL_USER=root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8085:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
